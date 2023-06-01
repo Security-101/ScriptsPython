@@ -1,24 +1,25 @@
-#Este código Python realiza una búsqueda de hosts en Shodan que comparten el mismo favicon que un sitio web especificado 
-#por el usuario. A continuación, trata de obtener la dirección IP real detrás de Cloudflare del host que coincide con el 
-#favicon mediante el uso de una técnica de resolución de DNS inversa.
-#A continuación, explicaré en detalle las partes del código:
-#    import - Importa los módulos necesarios para que el programa funcione, incluyendo mmh3 para generar un hash del favicon, 
-#             requests para hacer solicitudes HTTP, codecs para codificar y decodificar datos y shodan para acceder a la API de Shodan.
+# This Python code performs a search for hosts in Shodan that share the same favicon as a specified website
+# by user. Next, it tries to get the actual IP address behind Cloudflare of the host that matches the
+# favicon by using a reverse DNS resolution technique.
+# Next, I will explain in detail the parts of the code:
+# import - Import the necessary modules for the program to work, including mmh3 to generate a hash of the favicon,
+# requests to make HTTP requests, codecs to encode and decode data, and shodan to access the Shodan API.
 #
-#    SHODAN_API_KEY - La clave de API de Shodan utilizada para hacer consultas a la API de Shodan.
+# SHODAN_API_KEY - The Shodan API key used to query the Shodan API.
 #
-#    main() - La función principal del programa. Verifica si se proporciona un nombre de host, busca el favicon en el sitio 
-#              web especificado, genera un hash del favicon, realiza una consulta a la API de Shodan para encontrar hosts con 
-#                el mismo hash de favicon y finalmente obtiene la dirección IP real del host detrás de Cloudflare.
+# main() - The main function of the program. Check if a hostname is provided, look for the favicon on the site
+# web specified, generates a hash of the favicon, queries the Shodan API to find hosts with
+# the same favicon hash and finally get the actual IP address of the host behind Cloudflare.
 #
-#    get_favicon(favicon_url) - La función que se encarga de descargar el favicon del sitio web especificado.
+# get_favicon(favicon_url) - The function that is responsible for downloading the favicon of the specified website.
 #
-#    if __name__ == '__main__': - La línea de código que inicia la ejecución del programa.
+# if __name__ == '__main__': - The line of code that starts the execution of the program.
 
-#En resumen, este código es un ejemplo de cómo se puede utilizar la API de Shodan y técnicas de resolución de 
-#DNS inversa para obtener la dirección IP real detrás de Cloudflare de un sitio web y encontrar hosts que comparten el 
-#mismo favicon. Sin embargo, es importante tener en cuenta que esta técnica no siempre funciona y que puede haber otras medidas 
-#de protección que impidan que se descubra la dirección IP real del servidor de origen.
+# In short, this code is an example of how you can use the Shodan API and problem solving techniques
+# Reverse DNS to get the real IP address behind Cloudflare of a website and find hosts that share the
+# same favicon. However, it is important to note that this technique does not always work and that there may be other measures
+# protections that prevent the real IP address of the origin server from being discovered.
+
 
 import mmh3
 import requests
@@ -26,7 +27,7 @@ import codecs
 import sys
 import shodan
 
-SHODAN_API_KEY = "AQUI_TU_API_KEY"
+SHODAN_API_KEY = "YOUR_API_KEY"
 
 def main():
     if len(sys.argv) < 2:
